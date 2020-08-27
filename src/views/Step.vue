@@ -6,7 +6,6 @@
         width="720"
         height="1280"
         @mousedown="setStartPoint"
-        @mouseup="addComment"
       ></canvas>
     </el-main>
     <el-aside>
@@ -40,6 +39,11 @@ export default {
       this.initY = offsetY;
 
       this.canvas.addEventListener('mousemove', this.drawInMotion);
+      this.canvas.addEventListener('mouseout', () => {
+        this.canvas.removeEventListener('mousemove', this.drawInMotion);
+      });
+
+      this.canvas.addEventListener('mouseup', this.addComment);
     },
     addComment(event) {
       const { offsetX, offsetY } = event;
@@ -57,7 +61,7 @@ export default {
       });
     },
 
-    drawInMotion() {
+    drawInMotion(event) {
       this.ctx.clearRect(
         this.initX,
         this.initY,

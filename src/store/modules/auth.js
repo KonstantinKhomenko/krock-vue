@@ -5,7 +5,7 @@ const { IS_LOGGED_IN } = mutations;
 const authStore = {
   namespaced: true,
   state: {
-    isLoggedIn: false
+    isLoggedIn: true
   },
   getters: {
     isLoggedIn: ({ isLoggedIn }) => isLoggedIn
