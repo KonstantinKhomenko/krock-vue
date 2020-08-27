@@ -1,11 +1,23 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue';
+import Vuex from 'vuex';
+import authGuard from '@/guards/auth.guard';
+import auth from './modules/auth';
+import dashboard from './modules/dashboard';
+import countries from './modules/countries';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {},
   mutations: {},
   actions: {},
-  modules: {}
+  modules: {
+    auth,
+    dashboard,
+    countries
+  }
 });
+
+authGuard(store);
+
+export default store;
